@@ -38,6 +38,7 @@ def confirm_order(cart, user):
             current_date = now.strftime("%d/%m/%Y %H:%M:%S")
             generate_bill(cart, total_payment, current_date)
             save_order(order_id, order_status, cart, payment_mode, user, total_payment)
+            cart.clear()
             return
         elif choice == 'B':
             print("Please keep cash ready to handover while getting your order delivered")
@@ -49,8 +50,39 @@ def confirm_order(cart, user):
             current_date = now.strftime("%d/%m/%Y %H:%M:%S")
             generate_bill(cart, total_payment, current_date)
             save_order(order_id, order_status, cart, payment_mode, user, total_payment)
+            cart.clear()
             return
         elif choice == 'Q':
             return
         else:
             print("Invalid choice. Please try again.")
+
+def view_order_history(current_user):
+    with open("./data/orders.csv", "r") as fp:
+        reader = csv.reader(fp)
+        
+        print("\n", " " * 40, "Your Order History!\n")
+        print(" " * 5, f"| {'order_id':<15} | {'order_status':<15} | {'items':<44} | {'total amount':<15} | {'payment mode':<15} |")
+        print(" " * 5, "-" * 121)
+        
+        for row in reader:
+            if row[1] == current_user.emailId:
+                order_id = row[2]
+                order_status = row[3]
+                items = eval(row[4])  # Convert string representation of list to actual list
+                total_amount = row[5]
+                payment_mode = row[6]
+                
+                # Print order details
+                print(" " * 5, f"| {order_id:<15} | {order_status:<15} | ", end="")
+                
+                # Print items
+                for idx, (pizza, size, price) in enumerate(items):
+                    if idx == 0:
+                        print(f"{pizza} ({size}) - Rs {price}", end="")
+                    else:
+                        print(f"\n{'':<23}   {'':<15} | {pizza} ({size}) - Rs {price}", end="")
+                
+                # Print total amount and payment mode
+                print(" "*18,f"| {total_amount:<15} | {payment_mode:<15} |")
+                print(" " * 5, "-" * 121)

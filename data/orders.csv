@@ -10,3 +10,6 @@ xyz,x,ABCDE7506,placed,[],0,online
 xyz,x,ABCDE7507,Cancelled,"[('Meat Lovers', 'Large', 549)]",549,online
 xyz,x,ABCDE7508,placed,"[('Margherita', 'Small', 199), ('Veggie', 'Medium', 299)]",498,online
 Kartik Khandait,kartik@gmail.com,ABCDE7509,Cancelled,"[('Pepperoni', 'Small', 249), ('Veggie', 'Small', 199)]",448,online
+xyz,x,ABCDE7510,placed,"[('Margherita', 'Small', 199)]",199,online
+xyz,x,ABCDE7511,placed,"[('Margherita', 'Small', 199)]",199,offline
+xyz,x,ABCDE7512,placed,"[('Margherita', 'Small', 199)]",199,offline

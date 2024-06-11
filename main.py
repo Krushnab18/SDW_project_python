@@ -1,7 +1,7 @@
 from modules.auth import create_new_user, validate_login
 from modules.menu import display_menu, load_pizzas
 from modules.cart import add_to_cart, view_cart, remove_from_cart
-from modules.order import confirm_order
+from modules.order import confirm_order, view_order_history
 
 def main():
     pizzas = load_pizzas()
@@ -55,7 +55,7 @@ def main():
         elif choice == 'C':
             confirm_order(cart, user)
         elif choice == 'B':
-            print("Feature not yet implemented.")
+            view_order_history(user)
         elif choice == 'A':
             print("Feature not yet implemented.")
         elif choice == 'R':
