@@ -1,16 +1,16 @@
 from modules.menu import get_most_similar_word, display_menu
 def view_cart(cart):
-    total_amount = sum(price for _, _, price in cart)
+    total_amount = total(cart)
     
     print(" " * 38, "This is your cart: \n")
-    print(" " * 25, "-" * 55)
-    print(" " * 25, f"| {'S.No.':<8} | {'Pizza':<15} | {'Size':<10} | {'Price':<10}|")
-    print(" " * 25, "-" * 55)
-    for idx, (pizza, size, price) in enumerate(cart, start=1):
-        print(" " * 25, f"| {idx:<8} | {pizza:<15} | {size:<10} | {price:<10}|")
-    print(" " * 25, "-" * 55)
-    print(" " * 25, "|", " " * 25, f"Total amount  --> Rs {total_amount}  |")
-    print(" " * 25, "-" * 55, "\n")
+    print(" " * 25, "-" * 68)
+    print(" " * 25, f"| {'S.No.':<8} | {'Pizza':<15} | {'Size':<10} | {'Quantity':<10} | {'Price':<10}|")
+    print(" " * 25, "-" * 68)
+    for idx, (pizza, size, price, qty) in enumerate(cart, start=1):
+        print(" " * 25, f"| {idx:<8} | {pizza:<15} | {size:<10} | {qty:<10} | {price:<10}|")
+    print(" " * 25, "-" * 68)
+    print(" " * 25, "|", " " * 38, f"Total amount  --> Rs {total_amount}  |")
+    print(" " * 25, "-" * 68, "\n")
 
 def get_pizza_count():
     while True:
@@ -20,6 +20,14 @@ def get_pizza_count():
         except ValueError:
             print("Please enter an integer value only")
         
+def get_qty():
+    while True:
+        try:
+            qty = int(input("Enter Quantity of pizza required: "))
+            return qty
+        except ValueError:
+            print("Please enter an integer value only")
+
 def add_to_cart(cart, pizzas):
     display_menu(pizzas)
     count = get_pizza_count()
@@ -36,12 +44,18 @@ def add_to_cart(cart, pizzas):
                         for x in pizzas:
                             if (x[0] == pizza[0]) and (size in x[1]):
                                 cart.append(x)
-                                print("\nPizza added to your cart!\n")
                                 idx += 1
                                 break
                         break
                     else:
                         print("Please enter valid size ('S', 'M', 'L')")
+                qty = get_qty()
+                length = len(cart)
+                tup = cart[length - 1]
+                new_tup = tup + (qty,)
+                cart[length - 1] = new_tup
+                print("\nPizza added to your cart!\n")
+                
             elif choice == 'Q':
                 return
             else:
@@ -84,4 +98,4 @@ def remove_from_cart(cart, pizzas):
         print("Invalid choice. Please enter 'Y', 'N', or 'q' to go back.")
 
 def total(cart):
-    return sum(row[2] for row in cart)
+    return sum(row[2]*row[3] for row in cart)

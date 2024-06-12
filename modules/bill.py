@@ -1,5 +1,6 @@
 from fpdf import FPDF
 from modules.cart import total
+import os
 
 def generate_bill(order_id,cart, user, timestamp):
     pdf = FPDF()
@@ -22,6 +23,7 @@ def generate_bill(order_id,cart, user, timestamp):
     # Table Header
     pdf.cell(50, 10, txt="Pizza", border=1)
     pdf.cell(50, 10, txt="Size", border=1)
+    pdf.cell(50, 10, txt="Quantity", border=1)
     pdf.cell(50, 10, txt="Price (Rs)", border=1)
     pdf.ln()
 
@@ -29,12 +31,12 @@ def generate_bill(order_id,cart, user, timestamp):
     for item in cart:
         pdf.cell(50, 10, txt=item[0], border=1)
         pdf.cell(50, 10, txt=item[1], border=1)
+        pdf.cell(50, 10, txt=str(item[3]), border=1)
         pdf.cell(50, 10, txt=str(item[2]), border=1)
         pdf.ln()
 
     # Total
-    pdf.cell(100, 10, txt="Total", border=1)
-    pdf.cell(50, 10, txt=str(total(cart)), border=1)
+    pdf.cell(100, 10, txt=f"Total : RS{total(cart)}", border=1)
     pdf.ln()
 
     # Save the PDF
@@ -42,3 +44,4 @@ def generate_bill(order_id,cart, user, timestamp):
     pdf.output(f"./Bills/{pdf_filename}")
 
     print(f"Bill generated and saved as {pdf_filename}")
+    os.system(f"xdg-open \"{os.path.join('./Bills', pdf_filename)}\"")

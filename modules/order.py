@@ -1,8 +1,9 @@
 import csv
 from datetime import datetime
-from modules.cart import view_cart
+from modules.cart import view_cart, total
 from modules.bill import generate_bill
 from modules.utils import save_user_to_csv
+from main import main
 
 def generate_unique_order_id():
     starting = "ABCDE"
@@ -34,7 +35,7 @@ def confirm_order(cart, user):
             order_id = generate_unique_order_id()
             order_status = "placed"
             payment_mode = "online"
-            total_payment = sum(price for _, _, price in cart)
+            total_payment = total(cart)
             now = datetime.now()
             current_date = now.strftime("%d/%m/%Y %H:%M:%S")
             generate_bill(order_id,cart, user, current_date)
@@ -46,7 +47,7 @@ def confirm_order(cart, user):
             order_id = generate_unique_order_id()
             order_status = "placed"
             payment_mode = "offline"
-            total_payment = sum(price for _, _, price in cart)
+            total_payment = total(cart)
             now = datetime.now()
             current_date = now.strftime("%d/%m/%Y %H:%M:%S")
             generate_bill(order_id,cart, user, current_date)
@@ -62,38 +63,47 @@ def view_order_history(current_user):
     with open("./data/orders.csv", "r") as fp:
         reader = csv.reader(fp)
         
-        print("\n", " " * 40, "Your Order History!\n")
-        print(" " * 5, f"| {'order_id':<15} | {'order_status':<15} | {'items':<44} | {'total amount':<15} | {'payment mode':<15} |")
-        print(" " * 5, "-" * 121)
+        header = "Your Order History!"
+        separator = "-" * 123
+        print(f"\n{' ' * ((123 - len(header)) // 2)}{header}\n")
+        
+        # Print table header
+        print(f"{' ' * 3}| {'Order ID':<15} | {'Order Status':<15} | {'Items':<47} | {'Total Amount':<15} | {'Payment Mode':<15} |")
+        print(f"{' ' * 3}{separator}")
         
         for row in reader:
             if row[1] == current_user.emailId:
                 order_id = row[2]
                 order_status = row[3]
-                items = eval(row[4])  # Convert string representation of list to actual list
+                items = eval(row[4])  # Convert tuple representation of list to actual list
                 total_amount = row[5]
                 payment_mode = row[6]
                 
                 # Print order details
-                print(" " * 5, f"| {order_id:<15} | {order_status:<15} | ", end="")
+                print(f"{' ' * 3}| {order_id:<15} | {order_status:<15} | ", end="")
                 
                 # Print items
-                for idx, (pizza, size, price) in enumerate(items):
+                for idx, (pizza, size, price, qty) in enumerate(items):
+                    item_str = f"{pizza} ({size}) x {qty} - Rs {price}"
                     if idx == 0:
-                        print(f"{pizza} ({size}) - Rs {price}", end="")
+                        print(f"{item_str:<45}", end="")
                     else:
-                        print(f"\n{'':<23}   {'':<15} | {pizza} ({size}) - Rs {price}", end="")
+                        print("\n   |", f"{' ' * 17} {' ' * 15} | {item_str:<45}", end="")
                 
                 # Print total amount and payment mode
-                print(" "*18,f"| {total_amount:<15} | {payment_mode:<15} |")
-                print(" " * 5, "-" * 121)
-
+                print(f"{' ' * 3}| {total_amount:<15} | {payment_mode:<15} |")
+                print(f"{' ' * 3}{separator}")
+                
+    
 def save_order_to_csv(rows):
     with open("./data/orders.csv", "w", newline='') as fp:
         writer = csv.writer(fp)
         writer.writerows(rows)
 
 def cancel_order(user):
+    if(user == None):
+        print("Please login or create new account")
+        main()
     view_order_history(user)
     order_id = input("Enter order_id: ")
     

@@ -17,3 +17,6 @@ xyz,x,ABCDE7513,placed,"[('Margherita', 'Small', 199)]",199,online
 xyz,x,ABCDE7514,placed,"[('Margherita', 'Small', 199), ('Veggie', 'Small', 199)]",398,online
 xyz,x,ABCDE7515,Cancelled,"[('Margherita', 'Small', 199)]",199,offline
 Kartik Khandait,kartik79@gmail.com,ABCDE7516,placed,"[('Margherita', 'Small', 199)]",199,offline
+sample,sample@gmail.com,ABCDE7517,placed,"[('Margherita', 'Small', 199, 5)]",995,offline
+sample,sample@gmail.com,ABCDE7518,Cancelled,"[('Pepperoni', 'Large', 449, 2), ('Meat Lovers', 'Medium', 449, 2)]",1796,offline
+sample,sample@gmail.com,ABCDE7519,placed,"[('Margherita', 'Small', 199, 1)]",199,online
