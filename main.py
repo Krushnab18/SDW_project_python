@@ -2,7 +2,6 @@ from modules.auth import create_new_user, validate_login
 from modules.menu import display_menu, load_pizzas
 from modules.cart import add_to_cart, view_cart, remove_from_cart
 from modules.order import confirm_order, view_order_history, cancel_order
-
 def main():
     pizzas = load_pizzas()
     cart = []
@@ -23,6 +22,8 @@ def main():
             if user:
                 print("\n\t\t\t\tLogin Successful")
                 break
+        elif choice == 'B':
+                print("Coming Soon")
         elif choice == 'C':
             user = create_new_user()
             print("\n\t\t\t\tCongratulations! Your account is registered Successfully.")

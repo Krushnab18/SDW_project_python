@@ -9,7 +9,9 @@ def view_cart(cart):
     for idx, (pizza, size, price, qty) in enumerate(cart, start=1):
         print(" " * 25, f"| {idx:<8} | {pizza:<15} | {size:<10} | {qty:<10} | {price:<10}|")
     print(" " * 25, "-" * 68)
-    print(" " * 25, "|", " " * 38, f"Total amount  --> Rs {total_amount}  |")
+    print(" " * 25, "|", " " * 38, end = "")
+    string = f"Total amount  --> Rs {total_amount}  |"
+    print(f"{string:<42}  |")
     print(" " * 25, "-" * 68, "\n")
 
 def get_pizza_count():
@@ -81,7 +83,7 @@ def remove_from_cart(cart, pizzas):
             else:
                 print("Invalid size. Please enter 'S', 'M', 'L', or 'q' to go back.")
         
-        for idx, (p, s, price) in enumerate(cart):
+        for idx, (p, s, price, qty) in enumerate(cart):
             if p == pizza[0] and s[0].upper() == size:
                 cart.pop(idx)
                 print(f"{pizza[0]} ({size}) removed from your cart.\n")

@@ -3,7 +3,6 @@ from datetime import datetime
 from modules.cart import view_cart, total
 from modules.bill import generate_bill
 from modules.utils import save_user_to_csv
-from main import main
 
 def generate_unique_order_id():
     starting = "ABCDE"
@@ -103,7 +102,7 @@ def save_order_to_csv(rows):
 def cancel_order(user):
     if(user == None):
         print("Please login or create new account")
-        main()
+        return
     view_order_history(user)
     order_id = input("Enter order_id: ")
     
