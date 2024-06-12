@@ -13,3 +13,7 @@ Kartik Khandait,kartik@gmail.com,ABCDE7509,Cancelled,"[('Pepperoni', 'Small', 24
 xyz,x,ABCDE7510,placed,"[('Margherita', 'Small', 199)]",199,online
 xyz,x,ABCDE7511,placed,"[('Margherita', 'Small', 199)]",199,offline
 xyz,x,ABCDE7512,placed,"[('Margherita', 'Small', 199)]",199,offline
+xyz,x,ABCDE7513,placed,"[('Margherita', 'Small', 199)]",199,online
+xyz,x,ABCDE7514,placed,"[('Margherita', 'Small', 199), ('Veggie', 'Small', 199)]",398,online
+xyz,x,ABCDE7515,Cancelled,"[('Margherita', 'Small', 199)]",199,offline
+Kartik Khandait,kartik79@gmail.com,ABCDE7516,placed,"[('Margherita', 'Small', 199)]",199,offline

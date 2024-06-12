@@ -1,7 +1,7 @@
 import csv
 
 def display_menu(pizzas):
-    print(" " * 25, "Here are the available Pizzas in our shop\n")
+    print(" " * 34, "Here are the available Pizzas in our shop\n")
     print(" " * 25, "-" * 55)
     print(" " * 25, f"| {'Sr. No.':<8} | {'PIZZA':<15} | {'SIZE':<10} | {'PRICE (RS)':<10}|")
     print(" " * 25, "-" * 55)
@@ -27,6 +27,8 @@ def get_most_similar_word(word, pizzas):
     syllable = set(word)
     max_count = 0
     similar_pizza = ()
+    if word.upper() == 'Q':
+        return None
     for pizza in pizzas:
         count = sum(1 for y in pizza[0] if y in syllable)
         if count > max_count:

@@ -2,6 +2,7 @@ import csv
 from datetime import datetime
 from modules.cart import view_cart
 from modules.bill import generate_bill
+from modules.utils import save_user_to_csv
 
 def generate_unique_order_id():
     starting = "ABCDE"
@@ -24,7 +25,7 @@ def confirm_order(cart, user):
         return
     while True:    
         choice = input("Please select payment mode('A'-->online, 'B' --> offline, Q --> go back): ").upper()
-        if choice == 'A':
+        if choice == 'A':   
             upi_id = input("Please enter your UPI-ID: ")
             print("Please complete your payment through the notification sent to your payment app")
             print("Please wait.....")
@@ -36,7 +37,7 @@ def confirm_order(cart, user):
             total_payment = sum(price for _, _, price in cart)
             now = datetime.now()
             current_date = now.strftime("%d/%m/%Y %H:%M:%S")
-            generate_bill(cart, total_payment, current_date)
+            generate_bill(order_id,cart, user, current_date)
             save_order(order_id, order_status, cart, payment_mode, user, total_payment)
             cart.clear()
             return
@@ -48,7 +49,7 @@ def confirm_order(cart, user):
             total_payment = sum(price for _, _, price in cart)
             now = datetime.now()
             current_date = now.strftime("%d/%m/%Y %H:%M:%S")
-            generate_bill(cart, total_payment, current_date)
+            generate_bill(order_id,cart, user, current_date)
             save_order(order_id, order_status, cart, payment_mode, user, total_payment)
             cart.clear()
             return
@@ -86,3 +87,32 @@ def view_order_history(current_user):
                 # Print total amount and payment mode
                 print(" "*18,f"| {total_amount:<15} | {payment_mode:<15} |")
                 print(" " * 5, "-" * 121)
+
+def save_order_to_csv(rows):
+    with open("./data/orders.csv", "w", newline='') as fp:
+        writer = csv.writer(fp)
+        writer.writerows(rows)
+
+def cancel_order(user):
+    view_order_history(user)
+    order_id = input("Enter order_id: ")
+    
+    # Read the current orders
+    with open("./data/orders.csv", "r") as fp:
+        reader = csv.reader(fp)
+        orders = list(reader)
+    
+    # Find and update the order
+    order_found = False
+    for row in orders:
+        if row[2] == order_id:
+            row[3] = "Cancelled"
+            order_found = True
+            print("Order cancelled successfully")
+            if row[5] == 'online':
+                print("We are working on your refund. You will get your refund in the original payment method you used")
+    
+    if order_found:
+        save_order_to_csv(orders)
+    else:
+        print("Order ID not found")

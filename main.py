@@ -1,7 +1,7 @@
 from modules.auth import create_new_user, validate_login
 from modules.menu import display_menu, load_pizzas
 from modules.cart import add_to_cart, view_cart, remove_from_cart
-from modules.order import confirm_order, view_order_history
+from modules.order import confirm_order, view_order_history, cancel_order
 
 def main():
     pizzas = load_pizzas()
@@ -9,41 +9,43 @@ def main():
     user = None
 
     while True:
-        print("\nHello!, Welcome to our Pizza ordering system")
-        print("Please select one of the options:\n")
-        print("\t'A' --> User Login")
-        print("\t'B' --> Admin Login")
-        print("\t'C' --> New user Registration")
-        print("\t'G' --> Guest")
-        print("\t'Q' --> Quit")
+        print("\n\t\t\t\tHello!, Welcome to our Pizza ordering system")
+        print("\t\t\t\t    Please select one of the options:\n")
+        print("\t\t\t\t\t'A' --> User Login")
+        print("\t\t\t\t\t'B' --> Admin Login")
+        print("\t\t\t\t\t'C' --> New user Registration")
+        print("\t\t\t\t\t'G' --> Guest")
+        print("\t\t\t\t\t'Q' --> Quit\n\n")
         choice = input("Enter your choice: ").upper()
 
         if choice == 'A':
             user = validate_login()
             if user:
+                print("\n\t\t\t\tLogin Successful")
                 break
         elif choice == 'C':
             user = create_new_user()
+            print("\n\t\t\t\tCongratulations! Your account is registered Successfully.")
             break
         elif choice == 'G':
             user = None
             break
         elif choice == 'Q':
-            print("Thank you for visiting. Goodbye!")
+            print("\t\t\t\tThank you for visiting. Goodbye!")
             return
         else:
             print("Invalid choice. Please try again.")
 
     while True:
-        print("\nPlease select one of the options:\n")
-        print("\t'D' - Display menu")
-        print("\t'O' - Order pizza/Add Pizza to cart")
-        print("\t'V' - View cart")
-        print("\t'C' - Confirm pizza order")
-        print("\t'B' - View your order history")
-        print("\t'A' - Cancel order")
-        print("\t'R' - Remove pizza from cart")
-        print("\t'Q' - Quit")
+        print("\n\t\t\t\tPlease select one of the options:\n")
+        print("\t\t\t\t\t'D' - Display menu")
+        print("\t\t\t\t\t'O' - Order pizza/Add Pizza to cart")
+        print("\t\t\t\t\t'V' - View cart")
+        print("\t\t\t\t\t'C' - Confirm pizza order")
+        print("\t\t\t\t\t'B' - View your order history")
+        print("\t\t\t\t\t'A' - Cancel order")
+        print("\t\t\t\t\t'R' - Remove pizza from cart")
+        print("\t\t\t\t\t'Q' - Quit\n")
         choice = input("Enter choice: ").upper()
 
         if choice == 'D':
@@ -57,14 +59,14 @@ def main():
         elif choice == 'B':
             view_order_history(user)
         elif choice == 'A':
-            print("Feature not yet implemented.")
+            cancel_order(user)
         elif choice == 'R':
             remove_from_cart(cart, pizzas)
         elif choice == 'Q':
-            print("Thank you for visiting. Goodbye!")
+            print("\t\t\t\tThank you for visiting. Goodbye!")
             break
         else:
-            print("Invalid choice. Please try again.")
+            print("Invalid choice. Please try again.\n")
 
 if __name__ == "__main__":
     main()
