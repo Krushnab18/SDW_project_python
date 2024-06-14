@@ -1,17 +1,7 @@
 import csv
 from datetime import datetime
 from modules.cart import view_cart, total
-from modules.bill import generate_bill
-from modules.utils import save_user_to_csv
-
-def generate_unique_order_id():
-    starting = "ABCDE"
-    with open("data/orders.csv") as fp:
-        reader = csv.reader(fp)
-        rows = list(reader)
-        length = len(rows)
-        end = length + 7498
-    return starting + str(end)
+from modules.utils import save_user_to_csv, generate_bill, generate_unique_order_id
 
 def save_order(order_id, order_status, cart, payment_mode, user, total):
     with open("data/orders.csv", "a") as fp:

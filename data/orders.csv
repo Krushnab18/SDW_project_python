@@ -1,22 +1,4 @@
-Consumer name,Email id,order id,order status,total_amount,payment_mode,
-xyz,x,ABCDE7498,Cancelled,"[('Margherita', 'Small', 199)]",199,cash
-xyz,x,ABCDE7500,placed,"[('Margherita', 'Small', 199)]",199,cash
-xyz,x,ABCDE7501,placed,"[('Margherita', 'Small', 199)]",199,cash
-xyz,x,ABCDE7502,placed,"[('Margherita', 'Small', 199)]",199,cash
-xyz,x,ABCDE7503,placed,"[('Margherita', 'Small', 199)]",199,cash
-xyz,x,ABCDE7504,placed,"[('Margherita', 'Small', 199), ('Margherita', 'Small', 199)]",398,cash
-xyz,x,ABCDE7505,placed,"[('Margherita', 'Small', 199), ('Veggie', 'Small', 199), ('Meat Lovers', 'Large', 549)]",947,cash
-xyz,x,ABCDE7506,placed,[],0,online
-xyz,x,ABCDE7507,Cancelled,"[('Meat Lovers', 'Large', 549)]",549,online
-xyz,x,ABCDE7508,placed,"[('Margherita', 'Small', 199), ('Veggie', 'Medium', 299)]",498,online
-Kartik Khandait,kartik@gmail.com,ABCDE7509,Cancelled,"[('Pepperoni', 'Small', 249), ('Veggie', 'Small', 199)]",448,online
-xyz,x,ABCDE7510,placed,"[('Margherita', 'Small', 199)]",199,online
-xyz,x,ABCDE7511,placed,"[('Margherita', 'Small', 199)]",199,offline
-xyz,x,ABCDE7512,placed,"[('Margherita', 'Small', 199)]",199,offline
-xyz,x,ABCDE7513,placed,"[('Margherita', 'Small', 199)]",199,online
-xyz,x,ABCDE7514,placed,"[('Margherita', 'Small', 199), ('Veggie', 'Small', 199)]",398,online
-xyz,x,ABCDE7515,Cancelled,"[('Margherita', 'Small', 199)]",199,offline
-Kartik Khandait,kartik79@gmail.com,ABCDE7516,placed,"[('Margherita', 'Small', 199)]",199,offline
+Consumer name,Email_id,order_id,order_status,cart(pizza name, size, price, quantity), total_amount,payment_mode,
 sample,sample@gmail.com,ABCDE7517,placed,"[('Margherita', 'Small', 199, 5)]",995,offline
 sample,sample@gmail.com,ABCDE7518,Cancelled,"[('Pepperoni', 'Large', 449, 2), ('Meat Lovers', 'Medium', 449, 2)]",1796,offline
 sample,sample@gmail.com,ABCDE7519,placed,"[('Margherita', 'Small', 199, 1)]",199,online
@@ -26,3 +8,4 @@ Kartik Nityanand Khanadait,kartik99@gmail.com,ABCDE7522,placed,"[('Margherita', 
 aditya,aditya@gmail.com,ABCDE7523,placed,"[('Margherita', 'Small', 199, 2), ('Margherita', 'Medium', 299, 1)]",697,offline
 sample,sample@gmail.com,ABCDE7524,placed,"[('Margherita', 'Small', 199, 1)]",199,online
 sample,sample@gmail.com,ABCDE7525,Cancelled,"[('Four Cheese', 'Large', 449, 12)]",5388,online
+sample,sample@gmail.com,ABCDE7526,Cancelled,"[('Margherita', 'Small', 199, 1)]",199,online
