@@ -18,6 +18,7 @@ The Pizza Ordering System is a command-line application designed to streamline t
 - **Python**: The core programming language used to develop the application.
 - **CSV**: Data storage for storing pizza menu, user information, and order history.
 - **FPDF**: Library for generating PDF bills for confirmed orders.
+- **HASLIB**: Library for Hashing password
 
 ## Setup and Installation
 
